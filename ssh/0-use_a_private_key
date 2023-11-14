@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-#Connecting to the server using ssh and the private key
-ssh -i /Users/macbook/.ssh/school ubuntu@KAvezas-MacBook-Air.local
+# Connecting to the server using ssh and the private key
+ssh -i ~/.ssh/school ubuntu@Kavezas-MacBook-Air.local
+
