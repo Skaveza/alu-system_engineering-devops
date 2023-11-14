@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+#private key file path
+private_key =~/.ssh/school
+
+#Connecting to the server using ssh and the private key
+ssh -i "$private_key" ubuntu@Kavezas-MacBook-Air.local
+
