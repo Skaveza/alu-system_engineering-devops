@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 #private key file path
 private_key =~/.ssh/school
 
