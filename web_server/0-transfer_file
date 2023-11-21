@@ -3,15 +3,15 @@
 
 # Check if the number of arguments is less than 4 and display usage
 if [ "$#" -lt 4 ]; then
-   echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY
-"
+   echo "Usage: $0 PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
    exit 1
 fi
-# Assigning arguments to descriptive variables
-PATH_TO_SSH_KEY="$4"
-PATH_TO_FILE="$1"
-USERNAME="$3"
-IP="$2"
 
-# Tranfer
-scp -o "StrictHostKeyChecking=no" "$PATH_TO_FILE" "$USERNAME@$IP:~/" -i "$PATH_TO_SSH_KEY"
+# Assigning arguments to descriptive variables
+PATH_TO_FILE="$1"
+IP="$2"
+USERNAME="$3"
+PATH_TO_SSH_KEY="$4"
+
+# Transfer
+scp -o "StrictHostKeyChecking=no" -i "$PATH_TO_SSH_KEY" "$PATH_TO_FILE" "$USERNAME@$IP:~/"
