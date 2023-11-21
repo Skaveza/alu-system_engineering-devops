@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#Transfers files from the clients to a server
+
+#Check if the number of arguments is less than 4 and display usage
+if [ "$#" -lt 4 ]; then
+   echo "Usage: $0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+   exit 1
+fi
+
+#Tranfer the file using scp with strict host key checking disabled
+scp -o StrictHostKeyChecking=no -i "$ssh_key_path" "$file_path" "$username@$server_ip":~/
