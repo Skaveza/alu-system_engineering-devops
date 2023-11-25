@@ -4,17 +4,7 @@
 apt update
 apt install -y nginx
 
-mkdir /etc/nginx/html
-touch /etc/nginx/html/index.html
-
-echo "<html><body>Holberton School</body></html>" > /etc/nginx/html/index.html
-
-printf %s "server {
-     listen      80 default_server;
-     listen      [::]:80 default_server;
-     root        /etc/nginx/html;
-     index       index.html index.htm;
-}
-"> /etc/nginx/sites-available/default
+echo "<html><body>Holberton School</body></html>" > /var/www/html/index.html
 
 service nginx restart
+
