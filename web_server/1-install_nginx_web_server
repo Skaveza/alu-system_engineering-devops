@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
-# a Bash script that sets up Nginx on a server.
+# install nginx
+apt-get -y update
+apt-get -y install nginx
+echo "Holberton School" > /var/www/html/index.nginx-debian.html
+service nginx start
 
-apt update
-apt install -y nginx
-
-# Create the directory if it doesn't exist
-mkdir -p /tmp/correction/0114020198638544659161836264156535002464_5/2026/5803/web_server/output
-
-# Write "Holberton School" to the index.html file
-echo "<html><body>Holberton School</body></html>" > /tmp/correction/0114020198638544659161836264156535002464_5/2026/5803/web_server/output/index.html
-
-service nginx restart
 
