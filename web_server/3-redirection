@@ -1,37 +1,12 @@
 #!/usr/bin/env bash
-# configures Ngnix 
+# configure a brand new NGINX server
 
-if ! command -v nginx &> /dev/null; then
-    sudo apt-get update
-    sudo apt-get install nginx -y
-fi
+apt-get -y update
+apt-get -y install nginx
 
-# Create or update the configuration file for redirection
-sudo tee /etc/nginx/sites-available/redirect_me <<EOF
-server {
-    listen 80;
-    listen [::]:80;
+echo "Holberton School" > /var/www/html/index.html
 
-    server_name 5803-web-01;
+sed -i "/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
 
-    location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-    }
-
-    # Redirect all other requests to prevent access
-    location / {
-        return 404;
-    }
-}
-EOF
-
-# Enable or update the redirection configuration by creating a symbolic link
-if [ ! -f /etc/nginx/sites-enabled/redirect_me ]; then
-    sudo ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/
-fi
-
-# Test Nginx configuration
-sudo nginx -t
-
-# Reload Nginx to apply changes
-sudo systemctl reload nginx
+ufw allow 'Nginx HTTP'
+service nginx restart
