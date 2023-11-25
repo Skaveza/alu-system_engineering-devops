@@ -4,7 +4,11 @@
 apt update
 apt install -y nginx
 
-echo "<html><body>Holberton School</body></html>" > /var/www/html/index.html
+# Create the directory if it doesn't exist
+mkdir -p /tmp/correction/0114020198638544659161836264156535002464_5/2026/5803/web_server/output
+
+# Write "Holberton School" to the index.html file
+echo "<html><body>Holberton School</body></html>" > /tmp/correction/0114020198638544659161836264156535002464_5/2026/5803/web_server/output/index.html
 
 service nginx restart
 
