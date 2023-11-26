@@ -7,8 +7,8 @@ apt-get update
 apt-get -y install haproxy
 echo "ENABLED=1" >> /etc/default/haproxy
 
-echo "5803-web-01" > /etc/hostname
-echo "5803-web-02" > /etc/hostname
+echo "5803-web-01" >> /etc/hostname
+echo "5803-web-02" >> /etc/hostname
 
 printf %s "listen 5803-webs
     bind *:80
