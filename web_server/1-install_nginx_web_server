@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # install nginx
-apt-get -y update
-apt-get -y install nginx
+sudo apt-get -y update
+sudo apt-get -y install nginx
 echo "Holberton School" > /var/www/html/index.html
-kill -s HUP $(cat /var/run/nginx.pid)
+sudo kill -s HUP $(cat /var/run/nginx.pid)
 
-utput=$(curl -s http://localhost)  # Query localhost as it's the server itself
+output=$(curl -s http://localhost)  # Query localhost as it's the server itself
 
 # Check if the output contains "Holberton School"
 if [[ $output == *"Holberton School"* ]]; then
