@@ -2,7 +2,7 @@
 # install nginx
 sudo apt-get -y update
 sudo apt-get -y install nginx
-echo "Holberton School" > /var/www/html/index.html
+echo "Holberton School" | sudo tee  /var/www/html/index.html > /dev/null
 sudo kill -s HUP $(cat /var/run/nginx.pid)
 
 output=$(curl -s http://localhost)  # Query localhost as it's the server itself
