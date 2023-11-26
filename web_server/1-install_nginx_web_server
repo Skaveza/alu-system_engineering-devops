@@ -1,14 +1,39 @@
 #!/usr/bin/env bash
-# install nginx
+# Function to display usage and exit on incorrect arguments
+usage() {
+    echo "Usage: $0 PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+    exit 1
+}
+
+# Check if correct number of arguments are provided
+if [ "$#" -ne 4 ]; then
+    usage
+fi
+
+# Assigning arguments to descriptive variables
+PATH_TO_FILE="$1"
+IP="$2"
+USERNAME="$3"
+PATH_TO_SSH_KEY="$4"
+
+# Install nginx
 sudo apt-get -y update
 sudo apt-get -y install nginx
-echo "Holberton School" | sudo tee  /var/www/html/index.html > /dev/null
+
+# Create index.html with content
+echo "Holberton School" | sudo tee /var/www/html/index.html > /dev/null
+
+# Restart Nginx
 sudo kill -s HUP $(cat /var/run/nginx.pid)
 
-output=$(curl -s http://localhost)  # Query localhost as it's the server itself
+# Transfer file using scp
+scp -o "StrictHostKeyChecking=no" -i "$PATH_TO_SSH_KEY" "$PATH_TO_FILE" "$USERNAME@$IP:~/"
 
-# Check if the output contains "Holberton School"
-if [[ $output == *"Holberton School"* ]]; then
+# Check if Nginx root page contains the string "Holberton School"
+output=$(curl -s http://localhost)
+
+# Convert output to lowercase and check if it contains "holberton school"
+if [[ $(echo "$output" | tr '[:upper:]' '[:lower:]') == *"holberton school"* ]]; then
     echo "Holberton School string found in Nginx root page"
 else
     echo "Holberton School string not found in Nginx root page"
