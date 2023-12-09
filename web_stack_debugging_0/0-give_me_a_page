@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+docker exec -it 56ce14916ae5 /bin/bash
+service apache2 start
+service apache2 status
+cat /var/www/html/index.html
+exit
+curl 0:8080
+
