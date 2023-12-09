@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#Configures server to listen on port 80
 # Check Nginx configuration for port 80 listening
 nginx_config="/etc/nginx/nginx.conf"
 if grep -q "listen *:80" "$nginx_config"; then
