@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Check Nginx configuration for port 80 listening
+nginx_config="/etc/nginx/nginx.conf"
+if grep -q "listen *:80" "$nginx_config"; then
+    echo "Nginx is configured to listen on port 80"
+else
+    echo "Configuring Nginx to listen on port 80..."
+    sed -i 's/.*listen.*80.*/    listen 80;/g' "$nginx_config"
+fi
+
+# Restart Nginx service
+systemctl restart nginx
+
+# Check if Nginx is now listening on port 80
+if ss -tuln | grep -q ":80"; then
+    echo "Nginx is listening on port 80"
+else
+    echo "Nginx is not listening on port 80"
+fi
+
